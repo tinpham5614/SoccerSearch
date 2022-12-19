@@ -255,7 +255,6 @@ public final class ClubSearch extends JFrame {
             }
             scanner.close();
         }
-        //end search
     }
 
     /**
