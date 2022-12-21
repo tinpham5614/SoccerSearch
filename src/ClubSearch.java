@@ -112,7 +112,7 @@ public final class ClubSearch extends JFrame {
                 String s1 = rankField.getText();
                 int key = Integer.parseInt(s1);
 
-                if (!clubHashMap.containsKey(key) || clubHashMap.get(key) == null){
+                if (!clubHashMap.containsKey(key)){
                     hintLabel.setText("Club not FOUND");
                     rankField.setText("");
                     prevRankField.setText("");
@@ -133,32 +133,13 @@ public final class ClubSearch extends JFrame {
             }
         });
 
-        // search Button
-        JButton searchButton = new JButton("Search");
-        searchButton.setBounds(35, 30, 130, 30);
-        panel.add(searchButton);
-        searchButton.addActionListener(new ActionListener() {
-            /**
-             * @param e the event to be processed
-             */
+        nameField.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String s1 = rankField.getText();
-                int key = Integer.parseInt(s1);
-
-                if (e.getSource() == searchButton){
-                    if (!clubHashMap.containsKey(key) || clubHashMap.get(key) == null){
-                        hintLabel.setText("Club not FOUND");
-                        rankField.setText("");
-                        prevRankField.setText("");
-                        nameField.setText("");
-                        leagueField.setText("");
-                        offField.setText("");
-                        defField.setText("");
-                        spiField.setText("");
-                    } else {
+                for (Integer key : clubHashMap.keySet()){
+                    if (nameField.getText().equalsIgnoreCase(clubHashMap.get(key).name())){
+                        rankField.setText(clubHashMap.get(key).rank());
                         prevRankField.setText(clubHashMap.get(key).prevRank());
-                        nameField.setText(clubHashMap.get(key).name());
                         leagueField.setText(clubHashMap.get(key).league());
                         offField.setText(String.valueOf(clubHashMap.get(key).offensivePoint()));
                         defField.setText(String.valueOf(clubHashMap.get(key).defensivePoint()));
@@ -168,26 +149,61 @@ public final class ClubSearch extends JFrame {
                 }
             }
         });
+
+//        // search Button
+//        JButton searchButton = new JButton("Search");
+//        searchButton.setBounds(35, 30, 130, 30);
+//        panel.add(searchButton);
+//        searchButton.addActionListener(new ActionListener() {
+//            /**
+//             * @param e the event to be processed
+//             */
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                String s1 = rankField.getText();
+//                int key = Integer.parseInt(s1);
+//                if (e.getSource() == searchButton){
+//                    if (!clubHashMap.containsKey(key)){
+//                        hintLabel.setText("Club not FOUND");
+//                        rankField.setText("");
+//                        prevRankField.setText("");
+//                        nameField.setText("");
+//                        leagueField.setText("");
+//                        offField.setText("");
+//                        defField.setText("");
+//                        spiField.setText("");
+//                    } else {
+//                        prevRankField.setText(clubHashMap.get(key).prevRank());
+//                        nameField.setText(clubHashMap.get(key).name());
+//                        leagueField.setText(clubHashMap.get(key).league());
+//                        offField.setText(String.valueOf(clubHashMap.get(key).offensivePoint()));
+//                        defField.setText(String.valueOf(clubHashMap.get(key).defensivePoint()));
+//                        spiField.setText(String.valueOf(clubHashMap.get(key).spiPoint()));
+//                        hintLabel.setText("Club Found!");
+//                    }
+//                }
+//            }
+//        });
         //Clear button
-        JButton clearButton = new JButton("Clear");
-        clearButton.setBounds(185, 30, 130, 30);
-        panel.add(clearButton);
-        clearButton.addActionListener(new ActionListener() {
-            /**
-             * @param e the event to be processed
-             */
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                hintLabel.setText("Please enter rank or name to search");
-                rankField.setText("");
-                prevRankField.setText("");
-                nameField.setText("");
-                leagueField.setText("");
-                offField.setText("");
-                defField.setText("");
-                spiField.setText("");
-            }
-        });
+//        JButton clearButton = new JButton("Clear");
+//        clearButton.setBounds(185, 30, 130, 30);
+//        panel.add(clearButton);
+//        clearButton.addActionListener(new ActionListener() {
+//            /**
+//             * @param e the event to be processed
+//             */
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                hintLabel.setText("Please enter rank or name to search");
+//                rankField.setText("");
+//                prevRankField.setText("");
+//                nameField.setText("");
+//                leagueField.setText("");
+//                offField.setText("");
+//                defField.setText("");
+//                spiField.setText("");
+//            }
+//        });
         setVisible(true);
         /* Read data from file */
         clubHashMap = new HashMap<>();
