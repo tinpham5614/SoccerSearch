@@ -2,12 +2,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.HashMap;
-import java.util.Objects;
 import java.util.Scanner;
 
 /**
@@ -36,7 +33,6 @@ public final class ClubSearch extends JFrame {
         JPanel panel = new JPanel();
         getContentPane().add(panel);
         panel.setLayout(null);
-        panel.setBackground(Color.LIGHT_GRAY);
 
         //JLabel
         JLabel hintLabel = new JLabel("Please enter rank or name to search");
@@ -111,9 +107,8 @@ public final class ClubSearch extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 String s1 = rankField.getText();
                 int key = Integer.parseInt(s1);
-
-                if (!clubHashMap.containsKey(key)){
-                    hintLabel.setText("Club not FOUND");
+                if (!(clubHashMap.containsKey(key))){
+                    hintLabel.setText("Club not FOUND! Please try again.");
                     rankField.setText("");
                     prevRankField.setText("");
                     nameField.setText("");
@@ -145,6 +140,8 @@ public final class ClubSearch extends JFrame {
                         defField.setText(String.valueOf(clubHashMap.get(key).defensivePoint()));
                         spiField.setText(String.valueOf(clubHashMap.get(key).spiPoint()));
                         hintLabel.setText("Club Found!");
+                    } else {
+                        hintLabel.setText("Please try again!");
                     }
                 }
             }
